@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import "./App.css";
+import MyComp from "./components/MyComp";
+import MyUser from "./components/MyUser";
+const hobbies = [
+  {
+    id: 1,
+    name: "Football",
+  },
+  {
+    id: 2,
+    name: "tennis",
+  },
+  {
+    id: 3,
+    name: "sahmat",
+  },
+  {
+    id: 4,
+    name: "valeybal",
+  },
+];
 function App() {
+  const [isVisible, setIsVisible] = useState(true);
+  const [text, setText] = useState("");
+
   return (
+    // useState,useEffect,useRef,useCallback,useMemo
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isVisible ? <MyComp /> : <p>men getdim </p>}
+      <button onClick={() => setIsVisible(!isVisible)}>
+        Is Visible Toggle
+      </button>
+      <input type="message" onChange={(a) => setText(a.target.value)} />
+      <p>{text}</p>
+      
+      <span>-------------------------</span>
+      <MyUser name="Orxan" surname="Allahyarov" hobbies={hobbies} />
     </div>
   );
 }
